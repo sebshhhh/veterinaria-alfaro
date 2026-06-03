@@ -72,7 +72,10 @@
 
                 <div class="w-full max-w-md">
                     <div class="mb-8">
-                        <p class="text-xs font-black uppercase tracking-[0.28em] text-blue-600">Bienvenido</p>
+                        <div class="flex flex-wrap items-center gap-2">
+                            <p class="text-xs font-black uppercase tracking-[0.28em] text-blue-600">Bienvenido</p>
+                            <span class="rounded-full border border-emerald-200 bg-emerald-50 px-3 py-1 text-[11px] font-black uppercase tracking-[0.14em] text-emerald-700">Sistema actualizado</span>
+                        </div>
                         <h2 class="mt-3 text-2xl font-black text-slate-950 sm:text-3xl">Iniciar sesión</h2>
                         <p class="mt-2 text-sm leading-6 text-slate-600">Usa tu DNI y contraseña para entrar al sistema de gestión veterinaria.</p>
                     </div>
