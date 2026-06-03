@@ -1,0 +1,13 @@
+﻿@import './layout/workspace.css';
+@import './components/alerts.css';
+@import './components/alpine.css';
+@import './components/modals.css';
+@import './components/attention-flow.css';
+@import './components/action-buttons.css';
+@import './components/pagination.css';
+@import './modules/shared.css';
+@import './modules/reportes.css';
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;

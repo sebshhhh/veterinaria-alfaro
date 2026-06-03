@@ -1,0 +1,99 @@
+﻿@layer components {
+    .workspace-body {
+        min-height: 100vh;
+        overflow-x: hidden;
+        background:
+            radial-gradient(circle at top right, rgba(37, 99, 235, 0.08), transparent 24%),
+            radial-gradient(circle at 20% 18%, rgba(16, 185, 129, 0.06), transparent 18%),
+            linear-gradient(180deg, #f3f6fb 0%, #f7fafc 40%, #edf3f9 100%);
+    }
+
+    .workspace-sidebar {
+        position: fixed;
+        inset: 0 auto 0 0;
+        z-index: 60;
+        width: 20rem;
+        max-width: min(20rem, calc(100vw - 2rem));
+        height: 100dvh;
+        overflow: hidden;
+        transform: translateX(-105%);
+        transition: transform 0.24s ease;
+    }
+
+    .workspace-sidebar--open {
+        transform: translateX(0);
+    }
+
+    .workspace-sidebar__scroll {
+        min-height: 0;
+        overflow-y: auto;
+        overscroll-behavior: contain;
+        scrollbar-width: thin;
+        scrollbar-color: rgba(191, 219, 254, 0.6) transparent;
+    }
+
+    .workspace-sidebar-backdrop {
+        position: fixed;
+        inset: 0;
+        z-index: 55;
+        background: rgba(15, 23, 42, 0.48);
+        backdrop-filter: blur(5px);
+    }
+
+    .workspace-brand-title {
+        font-family: 'Poppins', sans-serif;
+    }
+
+    .workspace-shell {
+        min-width: 0;
+        flex: 1 1 auto;
+    }
+
+    @media (min-width: 1024px) {
+        .workspace-sidebar {
+            z-index: 30;
+            transform: none;
+        }
+
+        .workspace-shell {
+            margin-left: 20rem;
+            min-height: 100vh;
+        }
+
+        .workspace-sidebar-backdrop {
+            display: none !important;
+        }
+    }
+
+    .workspace-header {
+        @apply flex items-center justify-between gap-3 px-4 py-4 text-gray-800 sm:px-5 lg:justify-end lg:px-6 lg:py-5 xl:px-8;
+        background: linear-gradient(180deg, rgba(255, 255, 255, 0.94), rgba(255, 255, 255, 0.76));
+        backdrop-filter: blur(16px);
+        border-bottom: 1px solid rgba(226, 232, 240, 0.9);
+        box-shadow: 0 14px 32px -28px rgba(15, 23, 42, 0.3);
+        position: relative;
+        z-index: 20;
+        overflow: visible;
+    }
+
+    .workspace-main {
+        @apply flex-1 overflow-visible px-3 py-4 sm:px-5 lg:px-6 lg:py-5 xl:px-8 2xl:px-10;
+        min-width: 0;
+    }
+
+    .workspace-stage {
+        @apply h-full w-full;
+        position: relative;
+        z-index: 0;
+        min-width: 0;
+    }
+
+    @media (max-width: 640px) {
+        #toast {
+            left: 1rem !important;
+            right: 1rem !important;
+            bottom: 1rem !important;
+            width: auto;
+        }
+    }
+}

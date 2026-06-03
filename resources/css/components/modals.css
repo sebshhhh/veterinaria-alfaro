@@ -1,0 +1,53 @@
+﻿@layer components {
+    .workspace-modal {
+        position: fixed !important;
+        inset: 0 !important;
+        z-index: 1200 !important;
+        overscroll-behavior: contain;
+    }
+
+    .workspace-modal-shell {
+        width: 100%;
+        min-height: 100%;
+    }
+
+    .workspace-modal-surface {
+        position: relative;
+        z-index: 1;
+    }
+
+    .workspace-modal > .flex {
+        min-height: 100dvh;
+    }
+
+    @media (max-width: 768px) {
+        .workspace-modal {
+            padding: 0.75rem !important;
+        }
+
+        .workspace-modal > .flex {
+            align-items: flex-start !important;
+            justify-content: center !important;
+            padding-top: 0.5rem;
+            padding-bottom: 0.5rem;
+        }
+
+        .workspace-modal :is(.max-w-3xl, .max-w-4xl, .max-w-5xl, .max-w-6xl, .max-w-7xl) {
+            max-width: 100% !important;
+        }
+
+        .workspace-modal :is(.rounded-\[28px\], .rounded-\[30px\], .rounded-\[32px\], .rounded-\[36px\]) {
+            border-radius: 1.25rem !important;
+        }
+
+        .workspace-modal form {
+            padding-left: 1rem !important;
+            padding-right: 1rem !important;
+        }
+    }
+
+    .workspace-modal[id$="ClienteModal"],
+    .workspace-modal[id$="MascotaModal"] {
+        z-index: 1210 !important;
+    }
+}

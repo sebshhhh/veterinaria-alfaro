@@ -1,0 +1,63 @@
+﻿@layer components {
+    :is(.clientes-pagination, .citas-pagination, .historias-pagination, .vacunas-pagination, .mascotas-pagination, .atencion-rapida-pagination) nav > div:first-child {
+        display: none;
+    }
+
+    :is(.clientes-pagination, .citas-pagination, .historias-pagination, .vacunas-pagination, .mascotas-pagination, .atencion-rapida-pagination) nav > div:last-child {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 0.4rem;
+    }
+
+    :is(.clientes-pagination, .citas-pagination, .historias-pagination, .vacunas-pagination, .mascotas-pagination, .atencion-rapida-pagination) nav a,
+    :is(.clientes-pagination, .citas-pagination, .historias-pagination, .vacunas-pagination, .mascotas-pagination, .atencion-rapida-pagination) nav span[aria-current="page"] span,
+    :is(.clientes-pagination, .citas-pagination, .historias-pagination, .vacunas-pagination, .mascotas-pagination, .atencion-rapida-pagination) nav span[aria-disabled="true"] span {
+        min-width: 2.6rem !important;
+        height: 2.6rem !important;
+        display: inline-flex !important;
+        align-items: center !important;
+        justify-content: center !important;
+        border-radius: 0.95rem !important;
+        border: 1px solid #dbe4f0 !important;
+        font-size: 0.875rem !important;
+        font-weight: 600 !important;
+        box-shadow: none !important;
+    }
+
+    :is(.clientes-pagination, .citas-pagination, .historias-pagination, .vacunas-pagination, .mascotas-pagination) nav span[aria-current="page"] span {
+        background-color: #2563eb !important;
+        border-color: #2563eb !important;
+        color: #ffffff !important;
+        box-shadow: 0 12px 24px -18px rgba(37, 99, 235, 0.95) !important;
+    }
+
+    .atencion-rapida-pagination nav span[aria-current="page"] span {
+        background-color: #059669 !important;
+        border-color: #059669 !important;
+        color: #ffffff !important;
+        box-shadow: 0 12px 24px -18px rgba(5, 150, 105, 0.85) !important;
+    }
+
+    :is(.clientes-pagination, .citas-pagination, .historias-pagination, .vacunas-pagination, .mascotas-pagination, .atencion-rapida-pagination) nav a {
+        background-color: #ffffff !important;
+        color: #334155 !important;
+    }
+
+    :is(.clientes-pagination, .citas-pagination, .historias-pagination, .vacunas-pagination, .mascotas-pagination) nav a:hover {
+        background-color: #eff6ff !important;
+        border-color: #bfdbfe !important;
+        color: #1d4ed8 !important;
+    }
+
+    .atencion-rapida-pagination nav a:hover {
+        background-color: #ecfdf5 !important;
+        border-color: #a7f3d0 !important;
+        color: #047857 !important;
+    }
+
+    :is(.clientes-pagination, .citas-pagination, .historias-pagination, .vacunas-pagination, .mascotas-pagination, .atencion-rapida-pagination) nav span[aria-disabled="true"] span {
+        background-color: #f8fafc !important;
+        color: #94a3b8 !important;
+    }
+}
