@@ -32,7 +32,7 @@ class AppServiceProvider extends ServiceProvider
         if (!$this->app->runningInConsole()) {
             $host = request()->getHost();
 
-            if (str_ends_with($host, 'trycloudflare.com')) {
+            if (str_ends_with($host, 'trycloudflare.com') || str_ends_with($host, 'vercel.app') || (bool) env('VERCEL')) {
                 URL::forceRootUrl('https://' . $host);
                 URL::forceScheme('https');
             }
