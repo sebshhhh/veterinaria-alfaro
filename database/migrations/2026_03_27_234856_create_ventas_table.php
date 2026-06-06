@@ -10,7 +10,7 @@ return new class extends Migration
     {
         Schema::create('ventas', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('cliente_id')->constrained('clientes');
+            $table->foreignId('cliente_id')->nullable()->constrained('clientes')->nullOnDelete();
             $table->decimal('total', 10, 2);
             $table->string('metodo_pago'); // efectivo, yape, tarjeta
             $table->string('estado')->default('pagado'); 

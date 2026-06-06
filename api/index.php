@@ -24,6 +24,24 @@ $runtimeEnv = [
     'APP_EVENTS_CACHE' => getenv('APP_EVENTS_CACHE') ?: '/tmp/cache/events.php',
 ];
 
+if (getenv('VERCEL')) {
+    $sourceDatabase = __DIR__.'/../database/vercel.sqlite';
+    $runtimeDatabase = '/tmp/vercel.sqlite';
+
+    if (is_file($sourceDatabase) && (! is_file($runtimeDatabase) || filesize($runtimeDatabase) !== filesize($sourceDatabase))) {
+        copy($sourceDatabase, $runtimeDatabase);
+    }
+
+    if (is_file($runtimeDatabase)) {
+        $runtimeEnv['DB_CONNECTION'] = 'sqlite';
+        $runtimeEnv['DB_DATABASE'] = $runtimeDatabase;
+        $runtimeEnv['DB_FOREIGN_KEYS'] = 'false';
+        $runtimeEnv['SESSION_DRIVER'] = 'cookie';
+        $runtimeEnv['CACHE_STORE'] = 'array';
+        $runtimeEnv['QUEUE_CONNECTION'] = 'sync';
+    }
+}
+
 foreach ($runtimeEnv as $key => $value) {
     putenv($key.'='.$value);
     $_ENV[$key] = $value;
