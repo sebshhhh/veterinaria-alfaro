@@ -256,7 +256,11 @@ class DashboardController extends Controller
             return $item;
         });
 
-        $ingresosMensualesRaw = Venta::selectRaw('MONTH(fecha) as mes, SUM(total) as total')
+        $monthExpression = DB::connection()->getDriverName() === 'sqlite'
+            ? "CAST(strftime('%m', fecha) AS INTEGER)"
+            : 'MONTH(fecha)';
+
+        $ingresosMensualesRaw = Venta::selectRaw($monthExpression.' as mes, SUM(total) as total')
             ->where('estado', 'pagado')
             ->whereYear('fecha', $today->year)
             ->groupBy('mes')
