@@ -20,20 +20,6 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', fn () => redirect()->route('login'));
 
-Route::get('/_vercel-check', function () {
-    abort_unless(app()->environment('production') && env('VERCEL'), 404);
-
-    $user = \App\Models\User::where('dni', '12345678')->first();
-
-    return response()->json([
-        'connection' => config('database.default'),
-        'database' => config('database.connections.'.config('database.default').'.database'),
-        'users' => \App\Models\User::count(),
-        'demo_user' => (bool) $user,
-        'demo_password_ok' => $user ? \Illuminate\Support\Facades\Hash::check('12345678', $user->password) : false,
-    ]);
-});
-
 Route::middleware('guest')->group(function () {
     Route::get('login', [AuthenticatedSessionController::class, 'create'])->name('login');
     Route::post('login', [AuthenticatedSessionController::class, 'store']);
