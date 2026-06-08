@@ -20,6 +20,18 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', fn () => redirect()->route('login'));
 
+Route::get('/storage/{path}', function (string $path) {
+    $path = str_replace(['../', '..\\'], '', $path);
+    $publicFile = public_path('storage/' . $path);
+    $storageFile = storage_path('app/public/' . $path);
+
+    $file = is_file($publicFile) ? $publicFile : $storageFile;
+
+    abort_unless(is_file($file), 404);
+
+    return response()->file($file);
+})->where('path', '.*')->name('storage.public');
+
 Route::middleware('guest')->group(function () {
     Route::get('login', [AuthenticatedSessionController::class, 'create'])->name('login');
     Route::post('login', [AuthenticatedSessionController::class, 'store']);
