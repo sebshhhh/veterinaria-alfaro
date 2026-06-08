@@ -24,8 +24,9 @@ Route::get('/storage/{path}', function (string $path) {
     $path = str_replace(['../', '..\\'], '', $path);
     $publicFile = public_path('storage/' . $path);
     $storageFile = storage_path('app/public/' . $path);
+    $vercelFile = base_path('database/vercel_photos/' . $path);
 
-    $file = is_file($publicFile) ? $publicFile : $storageFile;
+    $file = collect([$publicFile, $storageFile, $vercelFile])->first(fn ($candidate) => is_file($candidate));
 
     abort_unless(is_file($file), 404);
 
