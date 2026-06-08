@@ -91,7 +91,7 @@
                 $historia = $tratamiento->historiaClinica;
                 $mascota = optional($historia)->mascota;
                 $cliente = optional($mascota)->cliente;
-                $fotoMascota = optional($mascota)->foto ? asset('storage/' . $mascota->foto) : asset('storage/default.png');
+                $fotoMascota = optional($mascota)->foto ? \App\Support\PhotoUrl::make($mascota->foto) : \App\Support\PhotoUrl::make(null);
                 $fechaInicio = $tratamiento->fecha_inicio;
                 $fechaFin = $tratamiento->fecha_fin;
                 $isProgramado = $fechaInicio && $fechaInicio->gt($today);
@@ -131,7 +131,7 @@
             @endphp
             <article class="rounded-[24px] border border-slate-200 bg-white p-4 shadow-sm transition duration-200 hover:-translate-y-0.5 hover:shadow-lg hover:shadow-slate-200/70">
                 <div class="flex gap-4">
-                    <img src="{{ $fotoMascota }}" alt="Foto de {{ optional($mascota)->nombre }}" class="h-28 w-28 rounded-[18px] object-cover" onerror="this.onerror=null;this.src='{{ asset('storage/default.png') }}';">
+                    <img src="{{ $fotoMascota }}" alt="Foto de {{ optional($mascota)->nombre }}" class="h-28 w-28 rounded-[18px] object-cover" onerror="this.onerror=null;this.src='{{ \App\Support\PhotoUrl::make(null) }}';">
                     <div class="min-w-0 flex-1">
                         <div class="flex items-start justify-between gap-3">
                             <div class="min-w-0">

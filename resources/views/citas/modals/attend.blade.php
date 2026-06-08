@@ -19,7 +19,7 @@
 
 <div id="attendCitaModal"
      data-open-on-load="{{ $hasAttendErrors ? 'true' : 'false' }}"
-     data-default-image="{{ asset('storage/default.png') }}"
+     data-default-image="{{ \App\Support\PhotoUrl::make(null) }}"
      class="workspace-modal fixed inset-0 z-50 hidden overflow-y-auto bg-slate-950/60 px-2 py-2 sm:px-4 sm:py-4"
      aria-hidden="true">
     <div class="flex min-h-full items-center justify-center">
@@ -71,7 +71,7 @@
                                     </div>
 
                                     <div class="mt-3 rounded-[20px] bg-white p-3 shadow-sm">
-                                        <img id="attendMascotaPhoto" src="{{ asset('storage/default.png') }}" alt="Mascota" class="h-28 w-full rounded-[18px] object-cover" onerror="this.onerror=null;this.src='{{ asset('storage/default.png') }}';">
+                                        <img id="attendMascotaPhoto" src="{{ \App\Support\PhotoUrl::make(null) }}" alt="Mascota" class="h-28 w-full rounded-[18px] object-cover" onerror="this.onerror=null;this.src='{{ \App\Support\PhotoUrl::make(null) }}';">
                                         <div class="mt-3">
                                             <p id="attendMascotaName" class="text-xl font-black text-slate-900">Mascota seleccionada</p>
                                             <p id="attendMascotaOwner" class="mt-1 text-sm text-slate-500">El due&ntilde;o aparecerá aquí.</p>

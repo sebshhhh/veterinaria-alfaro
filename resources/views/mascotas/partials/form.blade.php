@@ -1,4 +1,4 @@
-﻿@php
+@php
     $isEdit = $isEdit ?? false;
     $mascota = $mascota ?? null;
     $cliente = $cliente ?? $mascota?->cliente;
@@ -97,7 +97,7 @@
                         <div class="md:col-span-2">
                             <label class="mb-2 block text-sm font-semibold text-slate-600">Foto actual</label>
                             <div class="rounded-[24px] border border-slate-200 bg-slate-50 p-3">
-                                <img src="{{ asset('storage/' . $currentPhoto) }}" alt="Foto actual de {{ $mascota?->nombre }}" class="h-52 w-full rounded-[18px] object-cover sm:h-60">
+                                <img src="{{ \App\Support\PhotoUrl::make($currentPhoto) }}" alt="Foto actual de {{ $mascota?->nombre }}" class="h-52 w-full rounded-[18px] object-cover sm:h-60">
                             </div>
                             <p class="mt-2 text-xs text-slate-500">Si no seleccionas una nueva foto, se mantiene la actual.</p>
                         </div>

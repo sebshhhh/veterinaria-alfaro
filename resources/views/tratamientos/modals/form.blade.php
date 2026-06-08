@@ -47,7 +47,7 @@
                                         @php
                                             $mascotaOption = $historiaOption->mascota;
                                             $clienteOption = optional($mascotaOption)->cliente;
-                                            $fotoOption = optional($mascotaOption)->foto ? asset('storage/' . $mascotaOption->foto) : asset('storage/default.png');
+                                            $fotoOption = optional($mascotaOption)->foto ? \App\Support\PhotoUrl::make($mascotaOption->foto) : \App\Support\PhotoUrl::make(null);
                                         @endphp
                                         <option value="{{ $historiaOption->id }}" data-mascota="{{ optional($mascotaOption)->nombre }}" data-cliente="{{ optional($clienteOption)->nombre }}" data-tipo="{{ optional($mascotaOption)->tipo_animal }}" data-color="{{ optional($mascotaOption)->color }}" data-fecha="{{ optional($historiaOption->fecha)->format('d/m/Y') }}" data-diagnostico="{{ $historiaOption->diagnostico }}" data-foto="{{ $fotoOption }}" @selected(old('historia_clinica_id', $prefillHistoriaId) == $historiaOption->id)>{{ optional($mascotaOption)->nombre }} - {{ optional($clienteOption)->nombre }} | {{ optional($historiaOption->fecha)->format('d/m/Y') }}</option>
                                     @endforeach
@@ -110,7 +110,7 @@
                         <p class="text-sm font-semibold uppercase tracking-[0.18em] text-slate-400">Resumen clinico</p>
                         <div class="mt-4 rounded-[22px] bg-white p-4 shadow-sm">
                             <div class="flex items-start gap-4">
-                                <img id="tratamientoMascotaPhoto" src="{{ asset('storage/default.png') }}" alt="Vista de mascota" class="h-24 w-24 rounded-[20px] object-cover" onerror="this.onerror=null;this.src='{{ asset('storage/default.png') }}';">
+                                <img id="tratamientoMascotaPhoto" src="{{ \App\Support\PhotoUrl::make(null) }}" alt="Vista de mascota" class="h-24 w-24 rounded-[20px] object-cover" onerror="this.onerror=null;this.src='{{ \App\Support\PhotoUrl::make(null) }}';">
                                 <div class="min-w-0 flex-1">
                                     <p id="tratamientoMascotaName" class="text-xl font-bold text-slate-900">Selecciona una atención</p>
                                     <p id="tratamientoMascotaOwner" class="mt-1 text-sm text-slate-500">El due&ntilde;o aparecerá aquí.</p>

@@ -127,7 +127,7 @@
                                 <option value="">Selecciona una mascota</option>
                                 @foreach($vacunaMascotas as $mascotaOption)
                                     @php
-                                        $fotoOption = $mascotaOption->foto ? asset('storage/' . $mascotaOption->foto) : asset('storage/default.png');
+                                        $fotoOption = $mascotaOption->foto ? \App\Support\PhotoUrl::make($mascotaOption->foto) : \App\Support\PhotoUrl::make(null);
                                     @endphp
                                     <option value="{{ $mascotaOption->id }}"
                                             data-cliente="{{ optional($mascotaOption->cliente)->nombre }}"
@@ -196,7 +196,7 @@
                         <p class="text-sm font-semibold uppercase tracking-[0.18em] text-slate-400">Resumen visual</p>
 
                         <div class="mt-4 rounded-[22px] bg-white p-4 shadow-sm">
-                            <img id="vacunaMascotaPhoto" src="{{ asset('storage/default.png') }}" alt="Vista de mascota" class="h-48 w-full rounded-[18px] object-cover" onerror="this.onerror=null;this.src='{{ asset('storage/default.png') }}';">
+                            <img id="vacunaMascotaPhoto" src="{{ \App\Support\PhotoUrl::make(null) }}" alt="Vista de mascota" class="h-48 w-full rounded-[18px] object-cover" onerror="this.onerror=null;this.src='{{ \App\Support\PhotoUrl::make(null) }}';">
 
                             <div class="mt-4">
                                 <p id="vacunaMascotaName" class="text-xl font-bold text-slate-900">Selecciona una mascota</p>

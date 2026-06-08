@@ -94,10 +94,10 @@
                             <div id="citaMascotaSelected" class="mt-3 hidden items-center justify-between gap-3 rounded-2xl border border-blue-200 bg-white px-4 py-3 shadow-sm">
                                 <div class="flex min-w-0 items-center gap-3">
                                     <img id="citaMascotaSelectedPhoto"
-                                         src="{{ asset('storage/default.png') }}"
+                                         src="{{ \App\Support\PhotoUrl::make(null) }}"
                                          alt="Mascota seleccionada"
                                          class="h-12 w-12 shrink-0 rounded-2xl object-cover"
-                                         onerror="this.onerror=null;this.src='{{ asset('storage/default.png') }}';">
+                                         onerror="this.onerror=null;this.src='{{ \App\Support\PhotoUrl::make(null) }}';">
                                     <div class="min-w-0">
                                         <p class="text-xs font-semibold uppercase tracking-[0.18em] text-blue-600">Paciente seleccionado</p>
                                         <p id="citaMascotaSelectedName" class="mt-1 truncate text-sm font-bold text-slate-900">--</p>
@@ -125,7 +125,7 @@
                                             data-type="{{ $mascotaOption->tipo_animal }}"
                                             data-breed="{{ $mascotaOption->raza }}"
                                             data-color="{{ $mascotaOption->color }}"
-                                            data-photo="{{ $mascotaOption->foto ? asset('storage/' . $mascotaOption->foto) : asset('storage/default.png') }}"
+                                            data-photo="{{ $mascotaOption->foto ? \App\Support\PhotoUrl::make($mascotaOption->foto) : \App\Support\PhotoUrl::make(null) }}"
                                             @selected(old('mascota_id') == $mascotaOption->id)>
                                         {{ $mascotaOption->nombre }} - {{ optional($mascotaOption->cliente)->nombre }}
                                     </option>
@@ -145,10 +145,10 @@
                                             <button type="button"
                                                     onclick="selectCitaMascotaForAppointment('{{ $mascotaReciente->id }}')"
                                                     class="flex items-center gap-3 rounded-2xl border border-slate-200 bg-white px-3 py-2.5 text-left transition hover:border-blue-200 hover:bg-blue-50">
-                                                <img src="{{ $mascotaReciente->foto ? asset('storage/' . $mascotaReciente->foto) : asset('storage/default.png') }}"
+                                                <img src="{{ $mascotaReciente->foto ? \App\Support\PhotoUrl::make($mascotaReciente->foto) : \App\Support\PhotoUrl::make(null) }}"
                                                      alt="Foto de {{ $mascotaReciente->nombre }}"
                                                      class="h-10 w-10 shrink-0 rounded-xl object-cover"
-                                                     onerror="this.onerror=null;this.src='{{ asset('storage/default.png') }}';">
+                                                     onerror="this.onerror=null;this.src='{{ \App\Support\PhotoUrl::make(null) }}';">
                                                 <span class="min-w-0">
                                                     <span class="block truncate text-sm font-semibold text-slate-800">{{ $mascotaReciente->nombre }}</span>
                                                     <span class="block truncate text-xs text-slate-500">{{ optional($mascotaReciente->cliente)->nombre ?: 'Sin propietario' }}</span>

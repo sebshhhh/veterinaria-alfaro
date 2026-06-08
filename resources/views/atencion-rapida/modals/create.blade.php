@@ -25,7 +25,7 @@
 
 <div id="atencionRapidaModal"
      data-open-on-load="{{ $hasAtencionRapidaErrors ? 'true' : 'false' }}"
-     data-default-image="{{ asset('storage/default.png') }}"
+     data-default-image="{{ \App\Support\PhotoUrl::make(null) }}"
      class="workspace-modal fixed inset-0 z-50 hidden items-center justify-center overflow-y-auto bg-slate-950/60 px-2 py-2 sm:px-4 sm:py-4"
      aria-hidden="true">
     <div class="modal-card my-auto flex max-h-[calc(100dvh-1.5rem)] w-full max-w-[96rem] scale-95 flex-col overflow-hidden rounded-[28px] border border-slate-200 bg-white opacity-0 shadow-2xl shadow-slate-900/20 transition-all duration-200 ease-out">
@@ -74,7 +74,7 @@
                                 </div>
 
                                 <div class="mt-3 rounded-[20px] bg-white p-3 shadow-sm">
-                                    <img id="atencionRapidaMascotaPhoto" src="{{ asset('storage/default.png') }}" alt="Mascota" class="h-28 w-full rounded-[18px] object-cover" onerror="this.onerror=null;this.src='{{ asset('storage/default.png') }}';">
+                                    <img id="atencionRapidaMascotaPhoto" src="{{ \App\Support\PhotoUrl::make(null) }}" alt="Mascota" class="h-28 w-full rounded-[18px] object-cover" onerror="this.onerror=null;this.src='{{ \App\Support\PhotoUrl::make(null) }}';">
                                     <div class="mt-3">
                                         <p id="atencionRapidaMascotaName" class="text-xl font-black leading-tight text-slate-900">Selecciona una mascota</p>
                                         <p id="atencionRapidaMascotaOwner" class="mt-1 text-sm text-slate-500">El propietario aparecerá aquí.</p>
@@ -157,7 +157,7 @@
                                                             data-dni="{{ optional($mascota->cliente)->dni }}"
                                                             data-type="{{ $mascota->tipo_animal }}"
                                                             data-color="{{ $mascota->color }}"
-                                                            data-photo="{{ $mascota->foto ? asset('storage/' . $mascota->foto) : asset('storage/default.png') }}"
+                                                            data-photo="{{ $mascota->foto ? \App\Support\PhotoUrl::make($mascota->foto) : \App\Support\PhotoUrl::make(null) }}"
                                                             data-label="{{ $mascota->nombre }}"
                                                             data-last-service-id="{{ $mascota->ultimo_servicio_id }}"
                                                             data-last-service-name="{{ $mascota->ultimo_servicio_nombre }}"

@@ -20,7 +20,7 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', fn () => redirect()->route('login'));
 
-Route::get('/storage/{path}', function (string $path) {
+Route::get('/pet-photo/{path}', function (string $path) {
     $path = str_replace(['../', '..\\'], '', $path);
     $publicFile = public_path('storage/' . $path);
     $storageFile = storage_path('app/public/' . $path);
@@ -31,21 +31,7 @@ Route::get('/storage/{path}', function (string $path) {
     abort_unless(is_file($file), 404);
 
     return response()->file($file);
-})->where('path', '.*')->name('storage.public');
-
-Route::get('/_photo-check/{path}', function (string $path) {
-    $path = str_replace(['../', '..\\'], '', $path);
-    $candidates = [
-        'public' => public_path('storage/' . $path),
-        'storage' => storage_path('app/public/' . $path),
-        'vercel' => base_path('database/vercel_photos/' . $path),
-    ];
-
-    return response()->json(collect($candidates)->map(fn ($file) => [
-        'path' => $file,
-        'exists' => is_file($file),
-    ]));
-})->where('path', '.*');
+})->where('path', '.*')->name('pet-photo');
 
 Route::middleware('guest')->group(function () {
     Route::get('login', [AuthenticatedSessionController::class, 'create'])->name('login');

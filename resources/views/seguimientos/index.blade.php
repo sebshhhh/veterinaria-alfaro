@@ -1,4 +1,4 @@
-﻿<x-app-layout>
+<x-app-layout>
 @php
     $stats = $stats ?? [];
     $selectedEstado = request('estado');
@@ -190,7 +190,7 @@
                                 $historia = $seguimiento->historiaClinica;
                                 $mascota = $seguimiento->mascota;
                                 $cliente = optional($mascota)->cliente;
-                                $fotoMascota = optional($mascota)->foto ? asset('storage/' . $mascota->foto) : asset('storage/default.png');
+                                $fotoMascota = optional($mascota)->foto ? \App\Support\PhotoUrl::make($mascota->foto) : \App\Support\PhotoUrl::make(null);
                                 $tone = $seguimiento->ui_bucket_tone ?? 'violet';
                                 $badgeClass = match($tone) {
                                     'rose' => 'border-rose-200 bg-rose-50 text-rose-700',
@@ -281,7 +281,7 @@
                                 <div class="p-4 pl-5">
                                     <div class="flex gap-4">
                                         <div class="relative shrink-0">
-                                            <img src="{{ $fotoMascota }}" alt="Foto de {{ optional($mascota)->nombre }}" class="h-20 w-20 rounded-3xl border-4 border-white object-cover shadow-lg" onerror="this.onerror=null;this.src='{{ asset('storage/default.png') }}';">
+                                            <img src="{{ $fotoMascota }}" alt="Foto de {{ optional($mascota)->nombre }}" class="h-20 w-20 rounded-3xl border-4 border-white object-cover shadow-lg" onerror="this.onerror=null;this.src='{{ \App\Support\PhotoUrl::make(null) }}';">
                                             <span class="absolute -bottom-2 -right-2 flex h-9 w-9 items-center justify-center rounded-2xl shadow-lg {{ $statusIconBox }}">
                                                 <i data-feather="{{ $statusIcon }}" class="h-4 w-4"></i>
                                             </span>

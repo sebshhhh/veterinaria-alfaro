@@ -1,5 +1,5 @@
 <div id="mascotaModal"
-     data-default-image="{{ asset('storage/default.png') }}"
+     data-default-image="{{ \App\Support\PhotoUrl::make(null) }}"
      data-clinic-name="DRA. ALFARO"
      class="workspace-modal fixed inset-0 z-50 hidden overflow-y-auto bg-slate-950/60 px-3 py-3 sm:px-5 sm:py-5"
      aria-hidden="true">

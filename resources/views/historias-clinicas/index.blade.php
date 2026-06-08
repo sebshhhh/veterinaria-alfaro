@@ -202,7 +202,7 @@
                             @php
                                 $mascota = $historia->mascota;
                                 $cliente = optional($mascota)->cliente;
-                                $fotoMascota = optional($mascota)->foto ? asset('storage/' . $mascota->foto) : asset('storage/default.png');
+                                $fotoMascota = optional($mascota)->foto ? \App\Support\PhotoUrl::make($mascota->foto) : \App\Support\PhotoUrl::make(null);
                                 $diagnosticoResumen = trim((string) $historia->diagnostico) !== ''
                                     ? \Illuminate\Support\Str::limit($historia->diagnostico, 150)
                                     : 'Sin diagnóstico detallado en este registro.';
@@ -263,7 +263,7 @@
                                 <div class="grid gap-4 lg:grid-cols-[112px_minmax(0,1fr)_220px] lg:items-start">
                                     <div class="relative w-28 shrink-0">
                                         <div class="absolute inset-0 rounded-[22px] bg-gradient-to-b from-blue-500/20 to-sky-400/10"></div>
-                                        <img src="{{ $fotoMascota }}" alt="Foto de {{ optional($mascota)->nombre }}" class="relative h-28 w-full rounded-[22px] object-cover shadow-sm" onerror="this.onerror=null;this.src='{{ asset('storage/default.png') }}';">
+                                        <img src="{{ $fotoMascota }}" alt="Foto de {{ optional($mascota)->nombre }}" class="relative h-28 w-full rounded-[22px] object-cover shadow-sm" onerror="this.onerror=null;this.src='{{ \App\Support\PhotoUrl::make(null) }}';">
                                         <div class="absolute -bottom-3 left-3 rounded-2xl border border-white bg-white px-3 py-1.5 shadow-md">
                                             <p class="text-xs font-semibold uppercase tracking-[0.18em] text-slate-400">Fecha</p>
                                             <p class="mt-1 text-sm font-bold text-slate-900">{{ optional($historia->fecha)->format('d/m/Y') }}</p>

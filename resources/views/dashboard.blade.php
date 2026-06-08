@@ -274,12 +274,12 @@
                         <tbody class="divide-y divide-slate-100">
                             @forelse($agendaVisible as $cita)
                                 @php
-                                    $photo = optional($cita->mascota)->foto ? asset('storage/' . $cita->mascota->foto) : asset('storage/default.png');
+                                    $photo = optional($cita->mascota)->foto ? \App\Support\PhotoUrl::make($cita->mascota->foto) : \App\Support\PhotoUrl::make(null);
                                     $statusClass = $cita->estado === 'completada' ? 'bg-emerald-100 text-emerald-700' : ($cita->estado === 'cancelada' ? 'bg-rose-100 text-rose-700' : 'bg-amber-100 text-amber-700');
                                 @endphp
                                 <tr>
                                     <td class="py-3 pr-4 font-black text-slate-700">{{ Illuminate\Support\Str::of($cita->hora)->substr(0, 5)->toString() }}</td>
-                                    <td class="py-3 pr-4"><div class="flex items-center gap-3"><img src="{{ $photo }}" class="h-9 w-9 rounded-full object-cover" onerror="this.onerror=null;this.src='{{ asset('storage/default.png') }}';"><div><p class="font-black text-slate-950">{{ optional($cita->mascota)->nombre ?: 'Sin nombre' }}</p><p class="text-xs font-semibold text-slate-400">{{ optional($cita->mascota)->tipo_animal ?: 'Paciente' }}</p></div></div></td>
+                                    <td class="py-3 pr-4"><div class="flex items-center gap-3"><img src="{{ $photo }}" class="h-9 w-9 rounded-full object-cover" onerror="this.onerror=null;this.src='{{ \App\Support\PhotoUrl::make(null) }}';"><div><p class="font-black text-slate-950">{{ optional($cita->mascota)->nombre ?: 'Sin nombre' }}</p><p class="text-xs font-semibold text-slate-400">{{ optional($cita->mascota)->tipo_animal ?: 'Paciente' }}</p></div></div></td>
                                     <td class="py-3 pr-4 font-semibold text-slate-600">{{ optional(optional($cita->mascota)->cliente)->nombre ?: 'Sin propietario' }}</td>
                                     <td class="py-3 pr-4 font-semibold text-slate-600">{{ optional(optional($cita->veterinario)->user)->name ?: 'DRA ALFARO' }}</td>
                                     <td class="py-3"><span class="rounded-xl px-3 py-1.5 text-xs font-black {{ $statusClass }}">{{ ucfirst($cita->estado) }}</span></td>

@@ -1,4 +1,4 @@
-﻿<x-app-layout>
+<x-app-layout>
 @php
     $stats = $stats ?? [];
     $speciesCounts = $speciesCounts ?? collect();
@@ -170,7 +170,7 @@
                                                 $proximaCitaTexto = $proximaCita ? \Illuminate\Support\Carbon::parse($proximaCita)->format('d/m/Y') : 'Sin cita';
                                                 $ultimaVisitaTexto = $ultimaVisita ? \Illuminate\Support\Carbon::parse($ultimaVisita)->format('d/m/Y') : '--/--/----';
                                                 $sexoEsMacho = $mascota->sexo === 'Macho';
-                                                $foto = $mascota->foto ? asset('storage/' . $mascota->foto) : asset('storage/default.png');
+                                                $foto = $mascota->foto ? \App\Support\PhotoUrl::make($mascota->foto) : \App\Support\PhotoUrl::make(null);
                                                 $normalizedColor = \Illuminate\Support\Str::of($mascota->color ?? '')->ascii()->lower()->value();
                                                 $petColorHex = '#94a3b8';
                                                 foreach ($petColorPalette as $keyword => $hex) {
@@ -184,7 +184,7 @@
                                             <article class="group rounded-[24px] border border-slate-200 bg-white p-4 shadow-sm transition duration-200 hover:-translate-y-0.5 hover:shadow-lg hover:shadow-slate-200/70">
                                                 <div class="flex gap-4">
                                                     <div class="relative w-32 shrink-0">
-                                                        <img src="{{ $foto }}" alt="Foto de {{ $mascota->nombre }}" class="h-28 w-full rounded-[18px] object-cover" onerror="this.onerror=null;this.src='{{ asset('storage/default.png') }}';">
+                                                        <img src="{{ $foto }}" alt="Foto de {{ $mascota->nombre }}" class="h-28 w-full rounded-[18px] object-cover" onerror="this.onerror=null;this.src='{{ \App\Support\PhotoUrl::make(null) }}';">
                                                         <span class="absolute bottom-2 left-2 inline-flex items-center gap-1 rounded-full bg-emerald-100 px-2.5 py-1 text-xs font-semibold text-emerald-700 shadow-sm">
                                                             <span class="h-2 w-2 rounded-full bg-emerald-500"></span>
                                                             Activo
