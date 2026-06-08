@@ -17,7 +17,6 @@
         { "src": "/js/(.*)", "dest": "/js/$1" },
         { "src": "/sounds/(.*)", "dest": "/sounds/$1" },
         { "src": "/favicon.ico", "dest": "/favicon.ico" },
-        { "src": "/storage/(.*)", "dest": "/api/index.php" },
         { "src": "/(.*)", "dest": "/api/index.php" }
     ]
 }
