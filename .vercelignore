@@ -6,7 +6,10 @@ node_modules
 vendor
 bootstrap/cache/*.php
 public/hot
-public/storage
+public/storage/*
+!public/storage/.gitignore
+!public/storage/mascotas/
+!public/storage/mascotas/*
 
 storage/app/public/*
 !storage/app/public/.gitignore

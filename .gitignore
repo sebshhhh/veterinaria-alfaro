@@ -14,9 +14,12 @@
 /auth.json
 /bootstrap/cache/*.php
 /node_modules
-/public/build
+# /public/build  <- descomentado para subir assets compilados a git (necesario para Vercel)
 /public/hot
-/public/storage
+/public/storage/*
+!/public/storage/.gitignore
+!/public/storage/mascotas/
+!/public/storage/mascotas/*
 /tmp
 /storage/app/*
 !/storage/app/.gitignore
@@ -53,3 +56,5 @@
 Homestead.json
 Homestead.yaml
 Thumbs.db
+
+.vercel
