@@ -29,6 +29,8 @@
 !/storage/app/public/
 /storage/app/public/*
 !/storage/app/public/.gitignore
+!/storage/app/public/mascotas/
+!/storage/app/public/mascotas/*
 /storage/framework/*
 !/storage/framework/.gitignore
 !/storage/framework/cache/
