@@ -33,6 +33,20 @@ Route::get('/storage/{path}', function (string $path) {
     return response()->file($file);
 })->where('path', '.*')->name('storage.public');
 
+Route::get('/_photo-check/{path}', function (string $path) {
+    $path = str_replace(['../', '..\\'], '', $path);
+    $candidates = [
+        'public' => public_path('storage/' . $path),
+        'storage' => storage_path('app/public/' . $path),
+        'vercel' => base_path('database/vercel_photos/' . $path),
+    ];
+
+    return response()->json(collect($candidates)->map(fn ($file) => [
+        'path' => $file,
+        'exists' => is_file($file),
+    ]));
+})->where('path', '.*');
+
 Route::middleware('guest')->group(function () {
     Route::get('login', [AuthenticatedSessionController::class, 'create'])->name('login');
     Route::post('login', [AuthenticatedSessionController::class, 'store']);
